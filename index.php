@@ -17,6 +17,11 @@
                 Incorrect email or password
             </div>
         <?php endif ?>
+        <?php if (isset($_GET['register'])): ?>
+            <div class="alert alert-info">
+                Account Created
+            </div>
+        <?php endif ?>
 
         <form action="_actions/login.php" class="mb-3" method="post">
             <input type="email" class="form-control mb-2" name="email" placeholder="Email">

@@ -15,6 +15,19 @@ class UsersTable
         $this->db = $mysql->connect();
     }
 
+    public function find(String $email, String $password)
+    {
+        try {
+            $statement = $this->db->prepare("SELECT * FROM users WHERE email = :email AND password=:password");
+            $statement->execute(["email" => $email, "password" => $password]);
+
+            return $statement->fetch();
+        } catch (PDOException $e) {
+            $e->getMessage();
+            exit();
+        }
+    }
+
     public function insert(array $data)
     {
         try {
