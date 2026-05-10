@@ -1,12 +1,9 @@
 <?php
+include "vendor/autoload.php";
 
-session_start();
-$login = isset($_SESSION['user']);
+use Helpers\Auth;
 
-if (!$login) {
-    header("location: index.php");
-    exit();
-}
+$user = Auth::check();
 ?>
 
 
@@ -24,11 +21,10 @@ if (!$login) {
     <div class="container mt-4" style="max-width: 800px;">
         <h1 class="h3 mb-3">Profile</h1>
         <ul class="list-group mb-3">
-            <li class="list-group-item">Name: Alice</li>
-            <li class="list-group-item">Age: 22</li>
-            <li class="list-group-item">Email: alice@gmail.com</li>
-            <li class="list-group-item">Phone: a345678</li>
-            <li class="list-group-item">Address: Ygn</li>
+            <li class="list-group-item">Name: <?= $user->name ?></li>
+            <li class="list-group-item">Email: <?= $user->email ?></li>
+            <li class="list-group-item">Phone: <?= $user->phone ?></li>
+            <li class="list-group-item">Address: <?= $user->address ?></li>
         </ul>
 
         <a href="_actions/logout.php" class="text-danger">logout</a>
