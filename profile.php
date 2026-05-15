@@ -19,11 +19,16 @@ $user = Auth::check();
 
 <body>
     <div class="container mt-4" style="max-width: 800px;">
-        <h1 class="h3 mb-3">Profile</h1>
+        <h1 class="h3 mb-3">Mr. <?= $user->name ?>'s Profile</h1>
 
         <?php if ($user->photo): ?>
-            <img src="_actions/photos/<? $user->photo ?>" class="img-thumbnail" width="300" alt="">
-        <?php endif ?>
+            <div class="text-center">
+                <img src="_actions/photos/<?= $user->photo ?>"
+                    class="rounded-circle img-thumbnail"
+                    style="width:200px; height:200px; object-fit:cover;"
+                    alt="Profile Photo">
+            </div>
+        <?php endif; ?>
 
         <form action="_actions/upload.php" class="input-group my-4" method="post" enctype="multipart/form-data">
             <input type="file" name="photo" class="form-control">
