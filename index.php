@@ -17,6 +17,11 @@
                 Incorrect email or password
             </div>
         <?php endif ?>
+        <?php if (isset($_GET['suspended'])): ?>
+            <div class="alert alert-danger">
+                Account Suspended:
+            </div>
+        <?php endif ?>
         <?php if (isset($_GET['register'])): ?>
             <div class="alert alert-info">
                 Account Created

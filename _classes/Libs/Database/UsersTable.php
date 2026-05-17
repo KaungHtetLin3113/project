@@ -72,6 +72,21 @@ class UsersTable
         return $statement->rowCount();
     }
 
+    public function suspend(String $id)
+    {
+        $statement = $this->db->prepare("UPDATE users SET suspended=1 WHERE id=:id");
+        $statement->execute(["id" => $id]);
+
+        return $statement->rowCount();
+    }
+    public function unsuspend(String $id)
+    {
+        $statement = $this->db->prepare("UPDATE users SET suspended=0 WHERE id=:id");
+        $statement->execute(["id" => $id]);
+
+        return $statement->rowCount();
+    }
+
 
     public function delete(String $id)
     {
