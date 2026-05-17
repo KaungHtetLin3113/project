@@ -15,6 +15,17 @@ class UsersTable
         $this->db = $mysql->connect();
     }
 
+    public function all()
+    {
+        $statement = $this->db->query(
+            "SELECT users.*, roles.name AS role 
+            FROM users LEFT JOIN roles 
+            ON users.role_id = roles.id"
+        );
+        return $statement->fetchAll();
+    }
+
+
     public function find(String $email, String $password)
     {
         try {
@@ -49,6 +60,16 @@ class UsersTable
     {
         $statement = $this->db->prepare("UPDATE users SET photo=:photo WHERE id=:id");
         $statement->execute(["id" => $id, "photo" => $photo]);
+
+        return $statement->rowCount();
+    }
+
+    public function delete(String $id)
+    {
+        $statement = $this->db->prepare(
+            "DELETE FROM users WHERE id=:id"
+        );
+        $statement->execute(['id' => $id]);
 
         return $statement->rowCount();
     }
