@@ -18,6 +18,8 @@ $users = $table->all();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="js/bootstrap.bundle.min.js"> -->
+    <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -59,8 +61,15 @@ $users = $table->all();
                             </span>
                         <?php endif ?>
                     </td>
+
                     <td>
-                        <div class="btn-group">
+                        <div class="btn-group dropdown">
+                            <a href="#" class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Role</a>
+                            <div class="dropdown-menu dropdown-menu-dark">
+                                <a href="_actions/role.php?id=<?= $user->id ?>&role_id=1" class="dropdown-item">User</a>
+                                <a href="_actions/role.php?id=<?= $user->id ?>&role_id=2" class="dropdown-item">Manager</a>
+                                <a href="_actions/role.php?id=<?= $user->id ?>&role_id=3" class="dropdown-item">Admin</a>
+                            </div>
                             <a href="_actions/delete.php?id=<?= $user->id ?> " class="btn btn-sm btn-outline-danger">Delete</a>
                         </div>
                     </td>
